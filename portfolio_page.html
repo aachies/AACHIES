@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Asif Shereef — Business Analyst & Developer</title>
+
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --accent:#0b6efd;
+      --muted:#6b7280;
+      --glass: rgba(255,255,255,0.6);
+      --max-width:1100px;
+      --radius:12px;
+      --shadow: 0 6px 18px rgba(15,23,42,0.08);
+      --accent-2:#0f766e;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+      color:#0f172a; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    .wrap{max-width:var(--max-width);margin:36px auto;padding:20px;}
+    header.site-header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;
+    }
+
+    .brand{
+      display:flex;align-items:center;gap:14px;
+    }
+    .avatar{
+      width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;box-shadow:var(--shadow);
+    }
+    .name-title h1{margin:0;font-size:20px}
+    .name-title p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+
+    nav.top-nav{display:flex;gap:10px;align-items:center}
+    nav a{padding:8px 12px;border-radius:8px;color:var(--accent);text-decoration:none;font-size:14px}
+    nav a:hover{background:rgba(11,110,253,0.08);transform:translateY(-2px)}
+
+    .hero{
+      display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:center;margin-bottom:22px;
+    }
+
+    .card{
+      background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);
+    }
+
+    .hero-left h2{margin:0 0 10px;font-size:18px}
+    .hero-left p{color:var(--muted);margin:0 0 12px}
+
+    .contact-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+    .chip{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:999px;background:var(--glass);font-size:13px;color:#0f172a}
+    .chip svg{width:14px;height:14px;opacity:0.9}
+
+    .soft-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);background:transparent;cursor:pointer}
+    .soft-btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;border:none}
+    .soft-btn:hover{transform:translateY(-3px);transition:all .18s ease}
+
+    /* Sections */
+    section{margin-bottom:18px}
+    .section-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:12px}
+    .section-title h3{margin:0;font-size:16px}
+    .section-title small{color:var(--muted)}
+
+    .experience-list{display:grid;gap:10px}
+    .exp-item{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(11,110,253,0.02), rgba(11,110,253,0.01));border:1px solid rgba(11,110,253,0.04);cursor:pointer}
+    .exp-item h4{margin:0;font-size:15px}
+    .exp-meta{color:var(--muted);font-size:13px;margin-top:6px}
+    .exp-details{display:none;margin-top:10px;color:#0b1220;font-size:14px;line-height:1.45}
+
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .skill{padding:12px;border-radius:10px;background:var(--card);box-shadow:var(--shadow)}
+    .skill .bar{height:10px;background:#e6eefb;border-radius:999px;margin-top:8px;overflow:hidden}
+    .skill .bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .9s cubic-bezier(.2,.9,.3,1)}
+
+    .certs{display:flex;gap:10px;flex-wrap:wrap}
+    .cert{background:linear-gradient(180deg,#fff, #f7fbff);padding:10px;border-radius:10px;border:1px solid rgba(11,110,253,0.04);min-width:220px}
+
+    .refs-btn{background:transparent;border:none;color:var(--accent);cursor:pointer;padding:6px}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* modal */
+    .modal{position:fixed;left:0;top:0;right:0;bottom:0;display:none;align-items:center;justify-content:center;background:rgba(6,10,14,0.4);z-index:40}
+    .modal.open{display:flex}
+    .modal .dialog{width:95%;max-width:600px;background:var(--card);padding:20px;border-radius:12px;box-shadow:var(--shadow)}
+    .modal .dialog h4{margin:0 0 8px}
+    .ref-item{display:flex;justify-content:space-between;align-items:center;padding:10px 8px;border-top:1px dashed #e9eef7}
+    .ref-item:first-of-type{border-top:none}
+
+    /* contact card */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .contact-grid .box{padding:12px;border-radius:10px;background:var(--card);box-shadow:var(--shadow)}
+    .copy-btn{border:none;background:var(--accent);color:#fff;padding:8px;border-radius:8px;cursor:pointer}
+
+    /* responsive */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr;align-items:start}
+      .contact-grid{grid-template-columns:1fr}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted);font-size:14px}
+    a.external{color:var(--accent);text-decoration:none}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <div class="brand">
+        <div class="avatar" aria-hidden="true">AS</div>
+        <div class="name-title">
+          <h1>Asif Shereef</h1>
+          <p>Business Analyst &amp; Developer — Melbourne, VIC</p>
+        </div>
+      </div>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="#profile">Profile</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card hero-left">
+        <h2>Business Analyst & Developer</h2>
+        <p class="muted">Results-oriented engineer combining full-stack development, technical analysis and stakeholder engagement. I translate complex business needs into practical, maintainable solutions.</p>
+
+        <div class="contact-row" style="margin-top:12px">
+          <div class="chip" title="Address">
+            <!-- simple location icon -->
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.136 2 5 5.134 5 9c0 5.25 6.2 11.44 6.55 11.78.28.27.72.27 1 0C12.8 20.44 19 14.25 19 9c0-3.866-3.136-7-7-7z" stroke="#0b1220" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Unit 825/181 Exhibition Street, Melbourne CBD, VIC, 3000
+          </div>
+
+          <div class="chip" style="cursor:pointer" id="copyPhoneBtn" title="Copy phone">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92V21a1 1 0 0 1-1 1c-9.941 0-18-8.059-18-18a1 1 0 0 1 1-1h3.09a1 1 0 0 1 1 .75l1.2 5a1 1 0 0 1-.24.86l-2.2 2.2a16 16 0 0 0 7.9 7.9l2.2-2.2a1 1 0 0 1 .86-.24l5 1.2a1 1 0 0 1 .75 1z" stroke="#0b1220" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            +61 478 791 562
+          </div>
+
+          <div class="chip" style="cursor:pointer" id="copyEmailBtn" title="Copy email">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 8l8.5 6L20 8" stroke="#0b1220" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="4" width="20" height="16" rx="2" stroke="#0b1220" stroke-width="1.1"/></svg>
+            aachiespace@gmail.com
+          </div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <button class="soft-btn primary" onclick="location.href='#contact'">Contact me</button>
+          <button class="soft-btn" id="downloadResume" title="Download resume">Download CV</button>
+        </div>
+      </div>
+
+      <aside class="card" aria-label="Profile card">
+        <!-- placeholder image instructions -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="width:160px;height:160px;border-radius:12px;background:linear-gradient(135deg,#e9f0ff,#ffffff);display:flex;align-items:center;justify-content:center">
+            <!-- replace the text below with your photo: <img src="your-photo.jpg" alt="Asif Shereef"> -->
+            <div style="font-weight:700;color:#0b1220">Photo</div>
+          </div>
+
+          <div style="text-align:center">
+            <div style="font-weight:600">Asif Shereef</div>
+            <div class="small">Business Analyst & Developer</div>
+            <div class="small" style="margin-top:8px"><a class="external" href="https://github.com/aachiespace" target="_blank" rel="noopener noreferrer">github.com/aachiespace</a></div>
+            <div class="small"><a class="external" href="https://linkedin.com/in/asif-shereef-311600195" target="_blank" rel="noopener noreferrer">linkedin.com/in/asif-shereef-311600195</a></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <main>
+      <section id="profile" class="card">
+        <div class="section-title">
+          <h3>Profile</h3>
+          <small class="small">Summary</small>
+        </div>
+        <p>Results-oriented engineer with practical experience across full-stack development, technical analysis, and stakeholder engagement. Skilled at translating complex business requirements into scalable technology solutions using modern cloud, data, and web technologies. Passionate about building systems that make a measurable difference in real-world environments.</p>
+      </section>
+
+      <section id="experience">
+        <div class="section-title">
+          <h3>Experience</h3>
+          <small class="small">Selected roles</small>
+        </div>
+
+        <div class="experience-list">
+          <div class="exp-item card" data-expanded="false">
+            <h4>Technical Business Analyst — CCTS Global (Trivandrum, India)</h4>
+            <div class="exp-meta">2023 – 2025 • K2, MS SQL, .NET, cloud</div>
+            <div class="exp-details">
+              Business systems analysis, K2 development, requirement grooming and Microsoft ecosystem migration. Coordinated between engineering teams and client stakeholders, delivering iterative improvements via agile methods and hands-on development.
+            </div>
+          </div>
+
+          <div class="exp-item card" data-expanded="false">
+            <h4>Junior Developer — Computer Science Association (Amal Jyothi College)</h4>
+            <div class="exp-meta">2022 – 2023 • React, Node, MongoDB, AWS</div>
+            <div class="exp-details">
+              Led full-stack web projects using JavaScript, AWS and REST. Worked closely with end-users to iterate UI/UX and deployment; improved API reliability and managed delivery timelines.
+            </div>
+          </div>
+
+          <div class="exp-item card" data-expanded="false">
+            <h4>Intern — Security & Network, NET-n-NET Solutions (Abu Dhabi, UAE)</h4>
+            <div class="exp-meta">2021 • Cisco ISE, NAC</div>
+            <div class="exp-details">
+              Assisted with configuring Cisco ISE for Network Access Control, VLAN management and MAC-based policies. Gained exposure to secure infrastructure and incident response workflows.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="card">
+        <div class="section-title">
+          <h3>Skills</h3>
+          <small class="small">Languages, frameworks and tools</small>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill">
+            <strong>Languages</strong>
+            <div class="small">JavaScript, Python, Java, PHP</div>
+            <div class="bar" data-level="80"><i></i></div>
+          </div>
+
+          <div class="skill">
+            <strong>Frameworks &amp; Cloud</strong>
+            <div class="small">React, React-Native, Node, ASP.NET, AWS, Firebase</div>
+            <div class="bar" data-level="75"><i></i></div>
+          </div>
+
+          <div class="skill">
+            <strong>Databases</strong>
+            <div class="small">MongoDB, MS SQL, MySQL</div>
+            <div class="bar" data-level="70"><i></i></div>
+          </div>
+
+          <div class="skill">
+            <strong>Tools</strong>
+            <div class="small">Agile, Git, REST APIs, K2, Cloud Migration</div>
+            <div class="bar" data-level="75"><i></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="card">
+        <div class="section-title">
+          <h3>Education</h3>
+          <small class="small">Formal training</small>
+        </div>
+        <p><strong>Bachelor of Technology in Computer Science</strong><br>Amal Jyothi College of Engineering, Kerala, India (2019 – 2023). Relevant coursework: Cloud computing, systems engineering, full-stack development, business intelligence.</p>
+      </section>
+
+      <section id="certifications" class="card">
+        <div class="section-title">
+          <h3>Certifications</h3>
+          <small class="small">Professional learning</small>
+        </div>
+
+        <div class="certs">
+          <div class="cert">
+            <strong>Python Programming</strong><div class="small">IIT Bombay — 2019</div>
+          </div>
+          <div class="cert">
+            <strong>NodeJS Advanced Concepts</strong><div class="small">Udemy — 2022</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="references" class="card">
+        <div class="section-title">
+          <h3>References</h3>
+          <small class="small">Available on request</small>
+        </div>
+
+        <p class="muted">Two professional references are listed. Click to view details and copy contact info.</p>
+        <button class="refs-btn" id="openRefs">View references</button>
+      </section>
+
+      <section id="contact" class="card">
+        <div class="section-title">
+          <h3>Contact</h3>
+          <small class="small">Get in touch</small>
+        </div>
+
+        <div class="contact-grid">
+          <div class="box">
+            <h4>Contact details</h4>
+            <p class="small" style="margin-top:8px"><strong>Address:</strong> Unit 825/181 Exhibition Street, Melbourne CBD, VIC, 3000</p>
+            <p class="small" style="margin-top:6px"><strong>Phone:</strong> +61 478 791 562</p>
+            <p class="small" style="margin-top:6px"><strong>Email:</strong> aachiespace@gmail.com</p>
+
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button class="copy-btn" id="copyPhone2">Copy phone</button>
+              <button class="copy-btn" id="copyEmail2">Copy email</button>
+            </div>
+          </div>
+
+          <div class="box">
+            <h4>Send a quick message</h4>
+            <form id="contactForm" onsubmit="sendMail(event)" style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
+              <input type="text" id="name" placeholder="Your name" required style="padding:8px;border-radius:8px;border:1px solid #e6eefb">
+              <input type="email" id="email" placeholder="Your email" required style="padding:8px;border-radius:8px;border:1px solid #e6eefb">
+              <textarea id="message" placeholder="Message" rows="4" style="padding:8px;border-radius:8px;border:1px solid #e6eefb"></textarea>
+              <div style="display:flex;gap:8px">
+                <button class="soft-btn primary" type="submit">Open email</button>
+                <button type="button" class="soft-btn" id="resetForm">Clear</button>
+              </div>
+              <small class="muted">This opens your email client with a pre-filled message (no backend). You can also copy contact details above.</small>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="small">© <strong>Asif Shereef</strong> — Business Analyst & Developer • <a class="external" href="https://github.com/aachiespace" target="_blank" rel="noopener noreferrer">github.com/aachiespace</a> • <a class="external" href="https://linkedin.com/in/asif-shereef-311600195" target="_blank" rel="noopener noreferrer">linkedin.com</a></div>
+    </footer>
+  </div>
+
+  <!-- References modal -->
+  <div class="modal" id="refsModal" role="dialog" aria-modal="true" aria-labelledby="refsTitle">
+    <div class="dialog">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h4 id="refsTitle">Professional references</h4>
+        <button onclick="toggleModal(false)" class="refs-btn">Close</button>
+      </div>
+
+      <div style="margin-top:12px">
+        <div class="ref-item">
+          <div>
+            <strong>Mrs. Shiney Thomas</strong><div class="small">Asst. Professor, Amal Jyothi College</div>
+            <div class="small" style="margin-top:6px">shineythomas@amaljyothi.ac.in</div>
+          </div>
+          <div><button class="copy-btn" onclick="copyText('+91 94955 08855')">Copy +91 94955 08855</button></div>
+        </div>
+
+        <div class="ref-item">
+          <div>
+            <strong>Mr. Ranadev Pullakkade</strong><div class="small">Senior Contracts Manager, Schneider Electric UAE</div>
+            <div class="small" style="margin-top:6px">ranadev.pullakkade@se.com</div>
+          </div>
+          <div><button class="copy-btn" onclick="copyText('+971 56 410 5665')">Copy +971 56 410 5665</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Smooth scroll for nav links
+    document.querySelectorAll('nav a[href^="#"]').forEach(link=>{
+      link.addEventListener('click', e=>{
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+
+    // Expand/collapse experience items
+    document.querySelectorAll('.exp-item').forEach(item=>{
+      item.addEventListener('click', ()=>{
+        const details = item.querySelector('.exp-details');
+        const isOpen = item.getAttribute('data-expanded') === 'true';
+        item.setAttribute('data-expanded', !isOpen);
+        if(!isOpen){
+          details.style.display = 'block';
+        } else {
+          details.style.display = 'none';
+        }
+      });
+    });
+
+    // Animate skill bars when in view
+    const bars = document.querySelectorAll('.skill .bar');
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const b = entry.target;
+          const level = b.getAttribute('data-level') || 60;
+          b.querySelector('i').style.width = level + '%';
+        }
+      });
+    }, {threshold: 0.25});
+    bars.forEach(b=>obs.observe(b));
+
+    // Copy to clipboard helpers
+    function copyText(text){
+      navigator.clipboard?.writeText(text).then(()=>{
+        alert('Copied to clipboard: ' + text);
+      }).catch(()=>{ prompt('Copy this:', text); });
+    }
+
+    // Buttons for copying displayed phone/email
+    document.getElementById('copyPhoneBtn').addEventListener('click', ()=>copyText('+61 478 791 562'));
+    document.getElementById('copyPhone2').addEventListener('click', ()=>copyText('+61 478 791 562'));
+    document.getElementById('copyEmailBtn').addEventListener('click', ()=>copyText('aachiespace@gmail.com'));
+    document.getElementById('copyEmail2').addEventListener('click', ()=>copyText('aachiespace@gmail.com'));
+
+    // Simple modal for references
+    const refsModal = document.getElementById('refsModal');
+    document.getElementById('openRefs').addEventListener('click', ()=>toggleModal(true));
+    function toggleModal(open){
+      refsModal.classList.toggle('open', Boolean(open));
+    }
+
+    // Contact form => mailto (client opens email)
+    function sendMail(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent('Portfolio contact from ' + name);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+      window.location.href = `mailto:aachiespace@gmail.com?subject=${subject}&body=${body}`;
+    }
+    document.getElementById('resetForm').addEventListener('click', ()=> {
+      document.getElementById('contactForm').reset();
+    });
+
+    // Download resume placeholder (replace resume.pdf with your file)
+    document.getElementById('downloadResume').addEventListener('click', ()=>{
+      // Replace 'resume.pdf' with the path to your file
+      const resumePath = 'resume.pdf';
+      // Try to download; if missing, open a placeholder
+      fetch(resumePath, {method:'HEAD'}).then(res=>{
+        if(res.ok){
+          window.open(resumePath, '_blank');
+        } else {
+          alert('Resume file not found. Please add resume.pdf to the site folder or update the link.');
+        }
+      }).catch(()=>{ alert('Resume file not found. Please add resume.pdf to the site folder or update the link.'); });
+    });
+
+    // On page load, small UX improvement: reveal experience details collapsed by default
+    // (no action required)
+  </script>
+</body>
+</html>
