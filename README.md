@@ -1,16 +1,29 @@
-## Hi there 👋
+# Asif Shereef - Portfolio Website
 
-<!--
-**aachies/AACHIES** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## Overview
+A simple, responsive personal portfolio webpage showcasing career profile, experience, education, skills, and contact details.  
+Built with basic HTML, CSS, and minimal JavaScript for smooth navigation and animations.
 
-Here are some ideas to get you started:
+## Features
+- Responsive single-page layout
+- Sticky gradient header with navigation links
+- Animated fade-in sections for smooth UI
+- Interactive skill tags with hover effects
+- Contact section with clickable email and social media links
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Technologies Used
+- **HTML5** – Structure and content
+- **CSS3** – Styling, animations, responsive design
+- **JavaScript (Vanilla)** – Smooth scrolling/navigation
+- **Media Queries** – Mobile responsiveness
+
+## How to Use
+1. Clone or download the repository.
+2. Open `index.html` in any modern web browser.
+3. Modify text, colors, and links in `index.html` and `<style>` section as needed.
+4. Add your personal images in appropriate sections.
+
+## Author
+**Asif Shereef**  
+Business Analyst & Developer  
+[LinkedIn](https://linkedin.com/in/asif-shereef-311600195) | [GitHub](https://github.com)
